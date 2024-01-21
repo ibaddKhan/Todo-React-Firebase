@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/firebaseconfig";
@@ -10,10 +10,11 @@ const Signup = () => {
 
   function createAccount(e) {
     e.preventDefault();
-
+let nav = useNavigate()
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        nav("todo")
         console.log(user);
       })
       .catch((error) => {
@@ -44,7 +45,7 @@ const Signup = () => {
               </label>
               <input type="password" onChange={e => setPass(e.target.value)} placeholder="password" className="input input-bordered" required />
               <label className="label">
-                <Link to='/'>
+                <Link to='login'>
                   <span className="label-text-alt link link-hover">Already have an Account?</span>
                 </Link>
               </label>
