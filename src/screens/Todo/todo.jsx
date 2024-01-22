@@ -55,7 +55,7 @@ const Todo = () => {
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
-        setLoading(false);
+        setLoading(true);
       }
     };
 
