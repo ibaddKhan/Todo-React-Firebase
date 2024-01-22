@@ -46,7 +46,7 @@ const Login = () => {
               </label>
               <input type="password" onChange={e => setPass(e.target.value)} placeholder="password" className="input input-bordered" required />
               <label className="label">
-                <Link to='Signup'>
+                <Link to='/Signup'>
                   <span className="label-text-alt link link-hover">Don't have an Account?</span>
                 </Link>
               </label>

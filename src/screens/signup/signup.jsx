@@ -8,13 +8,13 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPass] = useState('');
 
+  let nav = useNavigate()
   function createAccount(e) {
     e.preventDefault();
-let nav = useNavigate()
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        nav("todo")
+        nav("/")
         console.log(user);
       })
       .catch((error) => {
@@ -45,7 +45,7 @@ let nav = useNavigate()
               </label>
               <input type="password" onChange={e => setPass(e.target.value)} placeholder="password" className="input input-bordered" required />
               <label className="label">
-                <Link to='login'>
+                <Link to='/login'>
                   <span className="label-text-alt link link-hover">Already have an Account?</span>
                 </Link>
               </label>
