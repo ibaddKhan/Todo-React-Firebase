@@ -146,7 +146,7 @@ const Todo = () => {
                   className="border-2 bg-gray-100 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 />
               ) : (
-                <span>{task.todo}</span>
+                <span className='overflow-x-auto'>{task.todo}</span>
               )}
               <div>
                 {editTaskId === task.id ? (
