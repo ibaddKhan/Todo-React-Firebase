@@ -88,8 +88,9 @@ const Todo = () => {
     const taskRef = doc(db, 'todos', editTaskId);
     try {
       await updateDoc(taskRef, { todo: newTodoVal });
-      tasks.splice(i, 1, { todo: newTodoVal });
-      setTasks([...tasks]);
+      setTasks(tasks.map((t, index) => (index === i ? { ...t, todo: newTodoVal } : t)));
+      setEditTaskId(null); 
+      console.log("Task updated");
     } catch (error) {
       console.error('Error updating task:', error);
     }
@@ -99,8 +100,9 @@ const Todo = () => {
     const taskRef = doc(db, 'todos', taskId);
     try {
       await deleteDoc(taskRef);
-      tasks.splice(i, 1);
-      setTasks([...tasks]);
+      setTasks(tasks.filter((task, index) => index !== i)); 
+      setEditTaskId(null); 
+      console.log("Task deleted");
     } catch (error) {
       console.error('Error deleting task:', error);
     }
@@ -152,7 +154,7 @@ const Todo = () => {
                     Save
                   </button>
                 ) : (
-                  <button onClick={() => setEditTaskId(task.id, index)} className="text-slate-300 btn btn-info mx-2">
+                  <button onClick={() => setEditTaskId(task.id)} className="text-slate-300 btn btn-info mx-2">
                     Edit
                   </button>
                 )}
